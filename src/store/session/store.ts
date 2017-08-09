@@ -2,10 +2,10 @@ import * as Dew from 'rxjs-dew';
 import * as Api from '../../api/session';
 import * as Rx from 'rxjs';
 import { State, initialState } from './state';
-import { Action, isSignInAction, isSignOutAction } from './actions';
+import { Action, filters } from './actions';
 
 export const soak: Dew.Soak<State, Action> = (state, action) => {
-    if (Api.isResponseAction(action)) {
+    if (filters.isResponse(action)) {
         return { ...action.response };
     }
     return state;
@@ -18,9 +18,9 @@ export const createFlow = (api: Api.SessionApi): Dew.Flow<Action> =>
             ins$,
             // get user inßformation once on refresh.
             api.get(),
-            ins$.filter(isSignInAction)
+            ins$.filter(filters.isSignIn)
                 .mergeMap(() => api.signin()),
-            ins$.filter(isSignOutAction)
+            ins$.filter(filters.isSignOut)
                 .mergeMap(() => api.signout())
         );
     };

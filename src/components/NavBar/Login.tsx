@@ -5,7 +5,7 @@ import * as Session from '../../store/session';
 export class Login extends Dew.Component<{}, Session.State, Session.State, Session.Action> {
     state = Session.initialState;
 
-    actions = this.bindActions(Session.actionCreators);
+    actions = this.bindActions(Session.creators);
 
     applyStoreState(state: Session.State) {
         this.setState(state);
