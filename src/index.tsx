@@ -9,9 +9,10 @@ import * as Session from './store/session';
 import { StubSessionApi } from './api/session/stub';
 
 // create once on load
+var storeMap = Session.createStoreMap(new StubSessionApi());
 
 ReactDOM.render(
-  <Provider store={Session.createStore(new StubSessionApi())}>
+  <Provider store={storeMap}>
     <App />
   </Provider>,
   document.getElementById('root') as HTMLElement
