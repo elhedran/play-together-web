@@ -1,9 +1,8 @@
 import * as Rx from 'rxjs';
-import * as Common from '../common';
-import {  SessionResponseAction } from './actions';
+import { ErrorAction, SessionResponseAction } from './actions';
 
 export interface SessionApi {
-    get: () => Rx.Observable<SessionResponseAction | Common.ErrorAction>;
-    signin: () => void;
-    signout: () => void;
+    get: () => Rx.Observable<SessionResponseAction | ErrorAction>;
+    signin: () => Rx.Observable<SessionResponseAction | ErrorAction>;
+    signout: () => Rx.Observable<SessionResponseAction | ErrorAction>;
 }

@@ -1,6 +1,6 @@
 export type SessionResponse = {
-    IsValid: boolean;
-    IsAnonymous: boolean;
-    Roles?: string[];
-    UserName?: string;
+    isValid: boolean;
+    isAnonymous: boolean;
+    roles?: string[];
+    userName?: string;
 };
