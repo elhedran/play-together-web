@@ -16,11 +16,11 @@ export type ErrorAction = BaseAction & {
 
 export type Action = ErrorAction;
 
-export const creators = {
+export const actionCreators = {
     error: (message: string): ErrorAction => ({ type: ActionType.Error, scope, message })
 };
 
-export const filters = {
+export const actionFilters = {
     isError: (action: any): action is ErrorAction =>
         action.scope === scope && action.type === ActionType.Error
 };

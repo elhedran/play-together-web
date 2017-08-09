@@ -20,13 +20,13 @@ export type ErrorAction = Common.ErrorAction;
 
 export type Action = ErrorAction | SessionResponseAction;
 
-export const creators = {
+export const actionCreators = {
     response: (response: SessionResponse): SessionResponseAction => ({ scope, type: ActionType.Response, response }),
-    ...Common.creators
+    ...Common.actionCreators
 };
 
-export const filters = {
+export const actionFilters = {
     isResponse: (action: any): action is SessionResponseAction =>
         action.type === ActionType.Response && action.scope === scope,
-    ...Common.filters
+    ...Common.actionFilters
 };
