@@ -18,16 +18,12 @@ export type SessionResponseAction = BaseAction & {
 
 export type ErrorAction = Common.ErrorAction;
 
-export type Action = Common.ErrorAction | SessionResponseAction;
+export type Action = ErrorAction | SessionResponseAction;
 
-export const isAction = (action: any): action is Action =>
-    Common.isErrorAction(action) || action.scope === scope;
-
-export const isResponseAction = (action: Action): action is SessionResponseAction =>
+export const isResponseAction = (action: any): action is SessionResponseAction =>
     action.type === ActionType.Response && action.scope === scope;
-export const isErrorAction = Common.isErrorAction;
 
 export const actionCreators = {
     response: (response: SessionResponse): SessionResponseAction => ({scope, type: ActionType.Response, response}),
-    error: Common.actionCreators.error
+    ...Common.actionCreators
 };

@@ -16,8 +16,6 @@ export type ErrorAction = BaseAction & {
 
 export type Action = ErrorAction;
 
-export const isAction = (action: any): action is Action =>
-    action.scope === scope;
 export const isErrorAction = (action: any): action is ErrorAction =>
     action.scope === scope && action.type === ActionType.Error;
 

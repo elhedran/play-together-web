@@ -5,7 +5,7 @@ import { State, initialState } from './state';
 import { Action, isSignInAction, isSignOutAction } from './actions';
 
 export const soak: Dew.Soak<State, Action> = (state, action) => {
-    if (Api.isAction(action) && Api.isResponseAction(action)) {
+    if (Api.isResponseAction(action)) {
         return { ...action.response };
     }
     return state;

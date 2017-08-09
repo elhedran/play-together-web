@@ -22,15 +22,13 @@ export type SignOutAction = BaseAction & {
 
 export type Action = SignInAction | SignOutAction | Api.Action;
 
-export const isAction = (action: any): action is Action =>
-    Api.isAction(action) || action.scope === scope;
-
-export const isSignInAction = (action: Action): action is SignInAction =>
+export const isSignInAction = (action: any): action is SignInAction =>
     action.scope === scope && action.type === ActionType.SignIn;
-export const isSignOutAction = (action: Action): action is SignOutAction =>
+export const isSignOutAction = (action: any): action is SignOutAction =>
     action.scope === scope && action.type === ActionType.SignOut;
 
 export const actionCreators = {
     signIn: (): SignInAction => ({scope, type: ActionType.SignIn }),
-    signOut: (): SignOutAction => ({scope, type: ActionType.SignOut })
+    signOut: (): SignOutAction => ({scope, type: ActionType.SignOut }),
+    ...Api.actionCreators
 };
